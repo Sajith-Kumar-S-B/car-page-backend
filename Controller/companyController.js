@@ -1,4 +1,4 @@
-const companies = require("../Model/companySchema")
+const companies = require("../Model/companySchema");
 
 
 
@@ -8,9 +8,9 @@ const companies = require("../Model/companySchema")
 
 exports.addcompany = async (req,res)=>{
     console.log("inside Add company function");
-    const companyId = req.payload
+    const userId = req.payload
    
-    const {title}= req.body
+    const {title,companyId}= req.body
 
     try{
         const existingCompany = await companies.findOne({title})
@@ -18,7 +18,7 @@ exports.addcompany = async (req,res)=>{
             res.status(406).json("Company already exist !! Upload another")
         }else{
             const newCompaNY = new companies({
-                title,companyId
+                title,companyId,userId
             })
             await newCompaNY.save()
             res.status(200).json(newCompaNY)
@@ -30,9 +30,21 @@ exports.addcompany = async (req,res)=>{
 
 
 
+// get company
 
 
+exports.getCompany = async (req,res)=>{
+    const userId = req.payload
 
+    try{
+
+        const allcompanies = await companies.find({userId})
+        res.status(200).json(allcompanies)
+
+    }catch(err){
+        res.status(401).json(err)
+    }
+}
 
 
 

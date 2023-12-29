@@ -14,11 +14,19 @@ router.post('/register',userController.register)
 router.post('/login',userController.login)
 
 
-// addpcompany Api
+// add company
 
 router.post('/company/add',jwtMiddleware,companyController.addcompany)
 
 
+// get companies
+
+router.get("/company/get",jwtMiddleware,companyController.getCompany)
+
+
+
+// delete company
+router.delete("/company/:id",jwtMiddleware,companyController.deleteCompanyController)
 
 // export router
 
