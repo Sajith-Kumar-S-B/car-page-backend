@@ -29,6 +29,13 @@ exports.addcompany = async (req,res)=>{
 }
 
 
+// add variant
+
+
+
+
+
+
 
 // get company
 
